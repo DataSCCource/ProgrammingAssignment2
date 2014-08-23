@@ -1,12 +1,11 @@
 ## Functions for calculating and caching the inverse of a given matrix
-## -------------------------------------------------------------------------------------
-## Example:
-## source("cachematrix.R")					## load this script
-## m <- matrix(rnorm(100*100), 100,100) 	## create random 100x100 element test matrix
-## mat <- makeCacheMatrix(m)				## create caching matrix 'mat' from 'm'
-## inv <- cacheSolve(mat)					## calculate inverse for the first time
-## inv <- cacheSolve(mat)					## get the cached inverse
-## -------------------------------------------------------------------------------------
+## Example: --------------------------------------------------------------------------------------
+## source("cachematrix.R")                      ## load this script
+## m <- matrix(rnorm(1000*1000), 1000,1000)     ## create random 1000x1000 element test matrix 'm'
+## mat <- makeCacheMatrix(m)                    ## create caching matrix 'mat' from 'm'
+## inv <- cacheSolve(mat)                       ## calculate inverse for the first time
+## inv <- cacheSolve(mat)                       ## get the cached inverse the second time
+## -----------------------------------------------------------------------------------------------
 
 ## makeCacheMatrix(matrix) acts as a container/class that holds a matrix 'x' 
 ## and (if calculated) its inverse 'm'. 'm' will be NULL if the inverse wasn't 
@@ -36,8 +35,8 @@ cacheSolve <- function(x, ...) {
         message("getting cached inverse")
         return(m)
     }
-	
-	## otherwise calculate inverse, cache and return it
+    
+    ## otherwise calculate inverse, cache and return it
     data <- x$get() 
     m <- solve(data, ...)
     x$setInverse(m)
